@@ -227,7 +227,7 @@ exports.addStudent = async (req, res) => {
 exports.getAllStudents = async (req, res) => {
   try {
     const pool = await sql.connect(config);
-    const result = await pool.request().query("SELECT * FROM students");
+    const result = await pool.request().query("SELECT * FROM students ORDER BY student_id DESC  ");
     res.json(result.recordset);
   } catch (err) {
     console.error("GetStudent Error:", err); // log exact error
