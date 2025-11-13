@@ -217,16 +217,25 @@ exports.addStudent = async (req, res) => {
   }
 };
 
-exports.getStudents = async (req, res) => {
+// exports.getStudents = async (req, res) => {
+//   try {
+//     const pool = await sql.connect(config);
+//     const result = await pool.request().query('SELECT * FROM students ORDER BY student_id DESC');
+//     res.json(result.recordset);
+//   } catch (err) {
+//     res.status(500).json({ error: 'Failed to fetch students' });
+//   }
+// };
+exports.getAllStudents = async (req, res) => {
   try {
     const pool = await sql.connect(config);
-    const result = await pool.request().query('SELECT * FROM students ORDER BY student_id DESC');
+    const result = await pool.request().query("SELECT * FROM students");
     res.json(result.recordset);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch students' });
+    console.error("GetStudent Error:", err); // log exact error
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
 
 exports.getByStudentId = async (req, res) => {
   const { id } = req.query;

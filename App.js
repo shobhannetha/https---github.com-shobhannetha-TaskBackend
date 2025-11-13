@@ -5,7 +5,7 @@ const studentRoutes = require('./Routing');
 const path = require('path');
 const app = express();
 app.use(cors({
-  origin: ["http://localhost:8081", "http://localhost:3000"],
+  origin: ["http://localhost:8081", "http://localhost:8080"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
@@ -23,5 +23,5 @@ app.use('/getstudents', studentRoutes);
 app.use('/getByStudentId', studentRoutes);
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
