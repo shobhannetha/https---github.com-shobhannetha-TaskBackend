@@ -245,7 +245,7 @@ exports.getByStudentId = async (req, res) => {
   try {
     const pool = await sql.connect(config);
     const result = await pool.request()
-      .input("id", sql.Int, id) // bind parameter safely
+      .input("id", sql.Int, id) 
       .query("SELECT * FROM students WHERE student_id = @id");
 
     if (result.recordset.length === 0) {

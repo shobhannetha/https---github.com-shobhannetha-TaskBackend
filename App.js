@@ -10,10 +10,13 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(bodyParser.json());
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/uploads', express.static('C:/Users/shoba/ReactProjects/uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static('C:/Users/shoba/ReactProjects/uploads'));
 
-// Routes
+
+
+
+
 app.use('/api/students', studentRoutes);
 
 
