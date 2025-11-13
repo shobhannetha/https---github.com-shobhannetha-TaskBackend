@@ -156,7 +156,7 @@ exports.addStudent = async (req, res) => {
       .input('location_lat', sql.Float, location_lat || null)
       .input('location_lng', sql.Float, location_lng || null)
       .input('profile_image_url', sql.VarChar, studentImagePath)
-     .input('AddAddress',sql.VarChar(max),AddAddress)
+     .input('AddAddress', sql.VarChar(sql.MAX), AddAddress)
       .query(`
         INSERT INTO students (
           name, class, section, school_name, gender, dob, blood_group,
