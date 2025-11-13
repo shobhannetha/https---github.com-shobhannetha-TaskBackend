@@ -52,7 +52,7 @@ exports.signup = async (req, res) => {
   } catch (err) {
     console.error('Signup Error:', err);
     if (err.number === 2627) {
-      return res.status(400).json({ error: 'Username already exists. Please choose a different one.' });
+      return res.status(400).json({ error: 'Username already exists. Please choose a different user Name.' });
     }
     res.status(500).json({ error: 'Signup failed' });
   }
@@ -62,7 +62,6 @@ exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Basic validation
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password are required' });
     }
@@ -83,10 +82,9 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // ✅ Generate JWT token
     const token = jwt.sign(
       { userId: user.user_id, username: user.username },
-      process.env.SECRET_KEY,  // Make sure SECRET_KEY is defined in .env
+      process.env.SECRET_KEY,  
       { expiresIn: '1d' }
     );
 
@@ -109,7 +107,7 @@ exports.login = async (req, res) => {
 };
 
 
-// Add Student Controller
+
 exports.addStudent = async (req, res) => {
   try {
     console.log('Request body:', req.body);
