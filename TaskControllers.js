@@ -118,7 +118,7 @@ exports.addStudent = async (req, res) => {
     const {
       name, class: studentClass, section, school_name, gender, dob,
       blood_group, father_name, mother_name, parent_contact, emergency_contact,
-      address1, address2, city, state, zip_code, location_lat, location_lng,
+      address1, address2, city, state, zip_code, location_lat, location_lng,AddAddress
     
     } = req.body;
 
@@ -158,18 +158,18 @@ exports.addStudent = async (req, res) => {
       .input('location_lat', sql.Float, location_lat || null)
       .input('location_lng', sql.Float, location_lng || null)
       .input('profile_image_url', sql.VarChar, studentImagePath)
-     
+     .input('AddAddress',sql.VarChar(max),AddAddress)
       .query(`
         INSERT INTO students (
           name, class, section, school_name, gender, dob, blood_group,
           father_name, mother_name, parent_contact, emergency_contact,
           address1, address2, city, state, zip_code,
-          location_lat, location_lng, profile_image_url
+          location_lat, location_lng, profile_image_url,Add_Address
         ) VALUES (
           @name, @class, @section, @school_name, @gender, @dob, @blood_group,
           @father_name, @mother_name, @parent_contact, @emergency_contact,
           @address1, @address2, @city, @state, @zip_code,
-          @location_lat, @location_lng, @profile_image_url
+          @location_lat, @location_lng, @profile_image_url,@AddAddress
         )
       `);
 
@@ -194,6 +194,7 @@ exports.addStudent = async (req, res) => {
       location_lat: location_lat || null,
       location_lng: location_lng || null,
       profile_image_url: studentImagePath,
+      AddAddress:AddAddress
       
     };
 
